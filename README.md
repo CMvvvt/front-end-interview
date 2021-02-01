@@ -13,8 +13,11 @@
   - [1.10 export default 和 export 的区别](#10)
   - [1.11 讲一下 let、var、const 的区别](#11-讲一下letvarconst的区别)
   - [1.12 闭包](#12-闭包是什么为什么要使用闭包)
+  - [1.13 获取页面url，search参数生成对象](#13-获取页面url，search参数生成对象)
+  - [1.14 判断一个字符是否回文](#14-判断一个字符是否回文)
+  - [1.15 数组去重](#15-数组去重)
+  
 - [2.计算机网络题目](#计算机网络知识)
-
   - [2.1 cookie/webStorage](#1请你谈谈-cookie你对-cookie-的理解以及与-seesionstoragelocalstorage-的区别)
   - [2.2 url 输入到页面显示的过程](#2-一个页面从输入-url-到页面加载显示完成这个过程中都发生了什么)
   - [2.3 GET 和 POST 区别](#3get-与-post-请求的区别)
@@ -226,6 +229,118 @@ const 有块级作用域，不支持变量提升，不允许重复声明，暂�
 
 ---
 
+
+
+### 13 获取页面url，search参数生成对象
+
+直接生成对象
+```
+function query(sHref = window.location.href){
+    var obj = {};
+    var args = sHref.split('?');
+    if(args[0] == sHref) return obj;
+    var arr = args[1].split('&');
+    for(var i = 0;i< arr.length;i++){
+        var arg = arr[i].split('=');
+        obj[arg[0]] = arg[1];
+    }
+    return obj;
+}
+```
+
+获取指定名称search对象名所对应的值
+```
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+```
+
+---
+### 14 判断一个字符是否回文
+
+回文是指类似于“上海自来水来自海上”或者“madam”，从前往后和从后往前读，字符串的内容是一样的，称为回文。判断一个字符串是否是回文有很多种思路：
+
+1: 创建一个与原字符串前后倒过来的新字符串，比较二者是否相等，如果相等则是回文.
+
+1.1 利用中介Array.reverse()的反转数组的特性
+```
+function isPalindRome(str) {
+    return str.split('').reverse().join('') === str;
+
+}
+
+console.log(isPalindRome('madam')); //true
+console.log(isPalindRome('mada')); //false
+```
+
+1.2 不利用任何方法，手动创建新字符串
+```
+function isPalindRome(str) {
+    let newStr = '';
+    for(let i = str.length - 1; i >= 0; i --){
+        newStr = newStr + str[i];
+
+    }
+    return newStr === str;
+
+}
+
+console.log(isPalindRome('madam'));
+console.log(isPalindRome('mada')); 
+```
+
+
+2: 从字符串的头和尾开始，依次比较字符串组是否相等，逐渐往中间收，如果全部相等，则是回文
+```
+function isPalindRome(str) {
+    let length = str.length;
+    for(let i = 0; i <= Math.floor(str.length / 2); i ++){
+        if(str[i] !== str[length - 1 - i]){
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+console.log(isPalindRome('aabbaa')); //true
+console.log(isPalindRome('aabaa')); //true
+console.log(isPalindRome('abb')); //false
+```
+
+---
+
+### 15 数组去重
+
+2.1 利用ES6新增的Set，因为Set的元素是非重复的
+```
+function deduplicate(arr) {
+    return Array.from(new Set(arr));
+}
+deduplicate([1,1,2,2,3]);//[1,2,3]
+```
+
+2.1 创建一个新数组，只包含源数组非重复的元素
+```
+function deduplicate(arr) {
+    let newArray = [];
+    for(let i of arr){
+        if(newArray.indexOf(i) === -1){
+            newArray.push(i);
+        }
+    }
+    return newArray;
+}
+deduplicate([1, 1, 2, 2, 3]);//[1,2,3]
+```
 ---
 
 ## 计算机网络知识
