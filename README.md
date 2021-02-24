@@ -13,11 +13,11 @@
   - [1.10 export default 和 export 的区别](#10)
   - [1.11 讲一下 let、var、const 的区别](#11-讲一下letvarconst的区别)
   - [1.12 闭包](#12-闭包是什么为什么要使用闭包)
-  - [1.13 获取页面url，search参数生成对象](#13-获取页面url，search参数生成对象)
+  - [1.13 获取页面 url，search 参数生成对象](#13-获取页面url，search参数生成对象)
   - [1.14 判断一个字符是否回文](#14-判断一个字符是否回文)
   - [1.15 数组去重](#15-数组去重)
-  
 - [2.计算机网络题目](#计算机网络知识)
+
   - [2.1 cookie/webStorage](#1请你谈谈-cookie你对-cookie-的理解以及与-seesionstoragelocalstorage-的区别)
   - [2.2 url 输入到页面显示的过程](#2-一个页面从输入-url-到页面加载显示完成这个过程中都发生了什么)
   - [2.3 GET 和 POST 区别](#3get-与-post-请求的区别)
@@ -31,9 +31,10 @@
   - [3.3 CSS3 新特性](#3-css3-有哪些新特性)
   - [3.4 Image alt 属性](#4)
   - [3.5 页面渲染 html 的过程](#5)
-  - [3.6 Flex布局](#6-Flex布局)
+  - [3.6 Flex 布局](#6-Flex布局)
 
 - [4.react/vue](#react--vue)
+  - [4.1 Redux](#1-为什么需要redux,怎么理解redux)
 - [5.其他](#其他)
   - [5.1 说说常见的排序算法](#1说说常见的算法)
   - [5.2 git 用法](#2说说git用法)
@@ -230,11 +231,10 @@ const 有块级作用域，不支持变量提升，不允许重复声明，暂�
 
 ---
 
-
-
-### 13 获取页面url，search参数生成对象
+### 13 获取页面 url，search 参数生成对象
 
 直接生成对象
+
 ```
 function query(sHref = window.location.href){
     var obj = {};
@@ -249,7 +249,8 @@ function query(sHref = window.location.href){
 }
 ```
 
-获取指定名称search对象名所对应的值
+获取指定名称 search 对象名所对应的值
+
 ```
 function getQueryVariable(variable)
 {
@@ -264,13 +265,15 @@ function getQueryVariable(variable)
 ```
 
 ---
+
 ### 14 判断一个字符是否回文
 
 回文是指类似于“上海自来水来自海上”或者“madam”，从前往后和从后往前读，字符串的内容是一样的，称为回文。判断一个字符串是否是回文有很多种思路：
 
 1: 创建一个与原字符串前后倒过来的新字符串，比较二者是否相等，如果相等则是回文.
 
-1.1 利用中介Array.reverse()的反转数组的特性
+1.1 利用中介 Array.reverse()的反转数组的特性
+
 ```
 function isPalindRome(str) {
     return str.split('').reverse().join('') === str;
@@ -282,6 +285,7 @@ console.log(isPalindRome('mada')); //false
 ```
 
 1.2 不利用任何方法，手动创建新字符串
+
 ```
 function isPalindRome(str) {
     let newStr = '';
@@ -294,11 +298,11 @@ function isPalindRome(str) {
 }
 
 console.log(isPalindRome('madam'));
-console.log(isPalindRome('mada')); 
+console.log(isPalindRome('mada'));
 ```
 
-
 2: 从字符串的头和尾开始，依次比较字符串组是否相等，逐渐往中间收，如果全部相等，则是回文
+
 ```
 function isPalindRome(str) {
     let length = str.length;
@@ -321,7 +325,8 @@ console.log(isPalindRome('abb')); //false
 
 ### 15 数组去重
 
-2.1 利用ES6新增的Set，因为Set的元素是非重复的
+2.1 利用 ES6 新增的 Set，因为 Set 的元素是非重复的
+
 ```
 function deduplicate(arr) {
     return Array.from(new Set(arr));
@@ -330,6 +335,7 @@ deduplicate([1,1,2,2,3]);//[1,2,3]
 ```
 
 2.1 创建一个新数组，只包含源数组非重复的元素
+
 ```
 function deduplicate(arr) {
     let newArray = [];
@@ -342,6 +348,7 @@ function deduplicate(arr) {
 }
 deduplicate([1, 1, 2, 2, 3]);//[1,2,3]
 ```
+
 ---
 
 ## 计算机网络知识
@@ -681,12 +688,13 @@ DOM 树完全和 html 标签一一对应，但是渲染树会忽略掉不需要�
 以上四个步骤并不是一次性顺序完成的。如果 DOM 或者 CSSOM 被修改，以上过程会被重复执行。实际上，CSS 和 JavaScript 往往会多次修改 DOM 或者 CSSOM。
 
 ---
-### 3.6 Flex布局
+
+### 3.6 Flex 布局
 
 Flex:
 
-Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。
-任何一个容器都可以指定为Flex布局。容器分为两种,块flex和行内flex.
+Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。
+任何一个容器都可以指定为 Flex 布局。容器分为两种,块 flex 和行内 flex.
 
 ```
 .box{
@@ -694,44 +702,53 @@ Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型�
   /*display:inline-flex;*/
 }
 ```
-Flex布局有两层,采用flex布局的元素称为flex容器,其子元素则自动成flex item,即项目.
-注:flex不同于block,flex容器的子元素的float,clear,vertical-align属性将失效.
 
-Flex布局:
-flex容器有两根轴:水平主轴就是x轴(main axis)和竖直轴也是y轴(cross axis),两轴相关位置标识如下:
+Flex 布局有两层,采用 flex 布局的元素称为 flex 容器,其子元素则自动成 flex item,即项目.
+注:flex 不同于 block,flex 容器的子元素的 float,clear,vertical-align 属性将失效.
 
-flex容器属性:
+Flex 布局:
+flex 容器有两根轴:水平主轴就是 x 轴(main axis)和竖直轴也是 y 轴(cross axis),两轴相关位置标识如下:
 
-* flex-direction:决定项目的排列方向。
+flex 容器属性:
 
-* flex-wrap:即一条轴线排不下时如何换行。
+- flex-direction:决定项目的排列方向。
 
-* flex-flow:是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。
+- flex-wrap:即一条轴线排不下时如何换行。
 
-* justify-content:定义了项目在主轴上的对齐方式。(justify)
+- flex-flow:是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。
 
-* align-items:定义项目在交叉轴上如何对齐。
+- justify-content:定义了项目在主轴上的对齐方式。(justify)
 
-* align-content:定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。(换行会产生多轴)
+- align-items:定义项目在交叉轴上如何对齐。
 
-Flex item属性:
-* order:定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+- align-content:定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。(换行会产生多轴)
 
-* flex-grow:定义项目的放大比例,如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
+Flex item 属性:
 
-* flex-shrink:定义了项目的缩小比例，默认为1，如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
+- order:定义项目的排列顺序。数值越小，排列越靠前，默认为 0。
 
-* flex-basis:定义了在分配多余空间之前，项目占据的主轴空间（main size）。
+- flex-grow:定义项目的放大比例,如果所有项目的 flex-grow 属性都为 1，则它们将等分剩余空间（如果有的话）。如果一个项目的 flex-grow 属性为 2，其他项目都为 1，则前者占据的剩余空间将比其他项多一倍。
 
-* flex:是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+- flex-shrink:定义了项目的缩小比例，默认为 1，如果所有项目的 flex-shrink 属性都为 1，当空间不足时，都将等比例缩小。如果一个项目的 flex-shrink 属性为 0，其他项目都为 1，则空间不足时，前者不缩小。
 
-* align-self:允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+- flex-basis:定义了在分配多余空间之前，项目占据的主轴空间（main size）。
+
+- flex:是 flex-grow, flex-shrink 和 flex-basis 的简写，默认值为 0 1 auto。后两个属性可选。
+
+- align-self:允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。默认值为 auto，表示继承父元素的 align-items 属性，如果没有父元素，则等同于 stretch。
+
 ---
 
 ## React / Vue
 
-## 其他
+### 1.为什么需要 redux,怎么理解 redux
 
-### 1.说说常见的算法
+1. React 有 props 和 state: props 意味着父级分发下来的属性，state 意味着组件内部可以自行管理的状态，并且整个 React 没有数据向上回溯的能力，也就是说数据只能单向向下分发，或者自行内部消化。
+2. 一般构建的 React 组件内部可能是一个完整的应用，它自己工作良好，你可以通过属性作为 API 控制它。但是更多的时候发现 React 根本无法让两个组件互相交流，使用对方的数据。然后这时候不通过 DOM 沟通（也就是 React 体制内）解决的唯一办法就是提升 state，将 state 放到共有的父组件中来管理，再作为 props 分发回子组件。
+3. 子组件改变父组件 state 的办法只能是通过 onClick 触发父组件声明好的回调，也就是父组件提前声明好函数或方法作为契约描述自己的 state 将如何变化，再将它同样作为属性交给子组件使用。这样就出现了一个模式：数据总是单向从顶层向下分发的，但是只有子组件回调在概念上可以回到 state 顶层影响数据。这样 state 一定程度上是响应式的。4. 为了面临所有可能的扩展问题，最容易想到的办法就是把所有 state 集中放到所有组件顶层，然后分发给所有组件。
+4. 为了面临所有可能的扩展问题，最容易想到的办法就是把所有 state 集中放到所有组件顶层，然后分发给所有组件。
+5. 为了有更好的 state 管理，就需要一个库来作为更专业的顶层 state 分发给所有 React 应用，这就是 Redux。让我们回来看看重现上面结构的需求：
+
+## 其他
 
 ### 2.说说 git 用法
